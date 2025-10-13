@@ -17,7 +17,7 @@
       <div class="brand">RM</div>
       <div>
         <h1>Fiscales — Región Metropolitana</h1>
-        <div class="small">Listado por comuna y mapa interactivo. Toca un marcador para ver datos y acciones (email / WhatsApp si hay teléfono).</div>
+        <div class="small">Listado por comuna y mapa (oculto). Usa el botón \"Buscar en mapa\" para abrir el mapa.</div>
       </div>
     </header>
 
@@ -32,18 +32,18 @@
     </div>
 
     <div class="layout">
-      <!-- left pane: listado -->
+      <!-- left pane: listado (visible por defecto) -->
       <aside class="card" id="leftPane">
         <div id="list">Cargando...</div>
       </aside>
 
-      <!-- right pane: mapa -->
-      <section class="card" id="mapPane">
+      <!-- right pane: mapa (oculto por defecto) -->
+      <section class="card collapsed" id="mapPane">
         <div id="map"></div>
       </section>
     </div>
 
-    <footer>Desarrollado por el 209 2do. J.E.J.V., la idea es q sea una app instalable en Iphone y Android para cooperarle a los colegas que necesitan dicha info</footer>
+    <footer>Datos base cargados desde documento. Pide ajustes si quieres otro comportamiento.</footer>
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
