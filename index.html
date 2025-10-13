@@ -1,49 +1,55 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Fiscales RM — Listado y Mapa</title>
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#006b3f" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Fiscales RM — Listado y Mapa</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#006b3f" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">RM</div>
-      <div>
-        <h1>Fiscales — Región Metropolitana</h1>
-        <div class="small">Listado por comuna y mapa interactivo. Toca un marcador para ver datos y acciones (email / WhatsApp si hay teléfono).</div>
-      </div>
-    </header>
+<div class="wrap">
+<header>
+<div class="brand">RM</div>
+<div>
+<h1>Fiscales — Región Metropolitana</h1>
+<div class="small">Listado por comuna y mapa interactivo. Toca un marcador para ver datos y acciones (email / WhatsApp si hay teléfono).</div>
+</div>
+</header>
 
-    <div class="controls">
-      <div class="tabs" role="tablist" aria-label="Modo de búsqueda">
-        <div id="tabList" class="tab active" role="tab">Buscar en listado</div>
-        <div id="tabMap" class="tab" role="tab">Buscar en mapa</div>
-      </div>
 
-      <input id="search" placeholder="Buscar por fiscal, fiscalía o comuna" style="flex:1">
-      <select id="comunaFilter"><option value="">Todas las comunas</option></select>
-      <button id="downloadJson" class="primary">Descargar JSON</button>
-    </div>
+<div class="controls">
+<div class="tabs" role="tablist" aria-label="Modo de búsqueda">
+<div id="tabList" class="tab active" role="tab">Buscar en listado</div>
+<div id="tabMap" class="tab" role="tab">Buscar en mapa</div>
+</div>
 
-    <div class="layout">
-      <aside class="card" id="leftPane">
-        <div id="list">Cargando...</div>
-      </aside>
 
-      <section class="card">
-        <div id="map"></div>
-      </section>
-    </div>
+<input id="search" placeholder="Buscar por fiscal, fiscalía o comuna" style="flex:1">
+<select id="comunaFilter"><option value="">Todas las comunas</option></select>
+<button id="downloadJson" class="primary">Descargar JSON</button>
+</div>
 
-    <footer>Datos base cargados desde documento interno. Si quieres los datos completos, sube un CSV o JSON.</footer>
-  </div>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-  <script src="app.js"></script>
+<div class="layout">
+<aside class="card" id="leftPane">
+<div id="list">Cargando...</div>
+</aside>
+
+
+<section class="card">
+<div id="map"></div>
+</section>
+</div>
+
+
+<footer>Datos base cargados desde documento proporcionado. Puedes pedir cambios adicionales.</footer>
+</div>
+
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="app.js"></script>
 </body>
 </html>
