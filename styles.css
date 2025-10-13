@@ -5,7 +5,7 @@ body{margin:0;background:var(--bg);color:#062018}
 header{display:flex;align-items:center;gap:12px}
 .brand{width:56px;height:56px;border-radius:8px;background:var(--green);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
 h1{font-size:18px;margin:0}
-.controls{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.controls{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center}
 .card{background:var(--card);padding:12px;border-radius:10px;box-shadow:0 6px 18px rgba(4,8,6,0.06)}
 .layout{display:grid;grid-template-columns:360px 1fr;gap:12px;margin-top:12px}
 #list{height:68vh;overflow:auto;padding:8px}
@@ -17,10 +17,12 @@ input, select, button{padding:8px;border-radius:6px;border:1px solid #d6d8d6}
 button.primary{background:var(--green);color:#fff;border:none;padding:8px 12px;border-radius:8px}
 .small{font-size:13px;color:var(--muted)}
 .tabs{display:flex;gap:6px}
-.tab{padding:8px 10px;border-radius:8px;border:1px solid transparent;cursor:pointer}
-.tab.active{background:var(--green);color:#fff}
+.tab{padding:8px 10px;border-radius:8px;border:1px solid transparent;cursor:pointer;background:transparent}
+.tab.active{background:var(--green);color:#fff;border-color:rgba(0,0,0,0.04)}
 .popup-actions a{display:inline-block;margin-right:6px;margin-top:6px;padding:6px 8px;border-radius:6px;text-decoration:none;border:1px solid #e2ede8}
 .popup-actions a.wa{background:#25D366;color:#fff;border:none}
 .copy-phone{display:inline-block;margin-left:6px;color:#064;cursor:pointer;font-weight:600}
 footer{font-size:12px;color:#425b57;text-align:center;margin-top:12px}
 @media (max-width:820px){.layout{grid-template-columns:1fr;}.brand{display:none}.controls{flex-direction:column}}
+/* hidden helper for when list collapsed */
+.collapsed { display: none !important; }
