@@ -1,5 +1,5 @@
-// app.js — compatible con GitHub Pages (rutas relativas).
-// Carga data/fiscalias.json, normaliza teléfonos y añade acciones en popups.
+// app.js — versión actualizada para comportamiento de pestañas, ordenar alfabéticamente,
+// mostrar "Teléfono:" separado, eliminar descarga JSON y arreglar filtro de comuna.
 
 const sampleData = [
   { "fiscal": "NELSON CAJAS", "fiscalia": "MELIPILLA", "telefono": "+56 9 9456 1658", "email": "NCAJAS@MINPUBLICO.CL", "lat": -33.69125249814863, "lng": -71.21412774386494 },
@@ -19,19 +19,17 @@ let data = [];
 
 (async function(){
   try{
-    const resp = await fetch('data/fiscalias.json'); // relativa
+    const resp = await fetch('data/fiscalias.json');
     if(resp && resp.ok){
       data = await resp.json();
       console.log('Loaded data/fiscalias.json ->', Array.isArray(data) ? data.length : 'not array');
-    } else {
-      throw new Error('data file not found or not OK');
-    }
+    } else throw new Error('data file not found or not OK');
   } catch(err){
-    console.warn('Could not load data/fiscalias.json, using sampleData:', err);
+    console.warn('Using sampleData due to load error:', err);
     data = sampleData;
   }
 
-  // Normalize phones and create helpers
+  // normalize phones
   data = (data || []).map(rec => {
     const raw = rec.telefono || '';
     const digits = String(raw).replace(/[^0-9]/g,'');
@@ -39,7 +37,7 @@ let data = [];
     if(digits.startsWith('56')) wa = digits;
     else if(digits.startsWith('9')) wa = '56' + digits;
     else if(digits.startsWith('0')) wa = '56' + digits.replace(/^0+/, '');
-    else if(digits.length >= 8 && digits.length <= 11) wa = digits; // fallback
+    else if(digits.length >= 8 && digits.length <= 11) wa = digits;
     return Object.assign({}, rec, { telefono_raw: raw, telefono_clean: digits, telefono_wa: wa });
   });
 
@@ -47,7 +45,6 @@ let data = [];
   else init();
 })();
 
-// Map & utilities
 let map, markers = [];
 
 function initMap(){
@@ -55,15 +52,9 @@ function initMap(){
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OSM' }).addTo(map);
 }
 
-function clearMarkers(){
-  markers.forEach(m => { try{ map.removeLayer(m); }catch(e){} });
-  markers = [];
-}
+function clearMarkers(){ markers.forEach(m=>{ try{ map.removeLayer(m); }catch(e){} }); markers = []; }
 
-function escapeHtml(s){
-  if(!s) return '';
-  return String(s).replace(/[&"'<>]/g, c => ({'&':'&amp;','"':'&quot;',"'":'&#39;','<':'&lt;','>':'&gt;'}[c]));
-}
+function escapeHtml(s){ if(!s) return ''; return String(s).replace(/[&"'<>]/g, c => ({'&':'&amp;','"':'&quot;',"'":'&#39;','<':'&lt;','>':'&gt;'}[c])); }
 
 function formatDisplayPhone(clean){
   if(!clean) return '';
@@ -76,6 +67,17 @@ function formatDisplayPhone(clean){
     return '+56 '+clean.slice(0,1)+' '+clean.slice(1,5)+' '+clean.slice(5);
   }
   return '+'+clean;
+}
+
+// Sort by fiscalia alphabetically (case-insensitive)
+function sortByFiscalia(arr){
+  return (arr || []).slice().sort((a,b)=>{
+    const A = (a.fiscalia||'').toLowerCase();
+    const B = (b.fiscalia||'').toLowerCase();
+    if(A < B) return -1;
+    if(A > B) return 1;
+    return 0;
+  });
 }
 
 function createPopupHtml(item){
@@ -93,35 +95,30 @@ function createPopupHtml(item){
 function renderList(filtered){
   const list = document.getElementById('list'); list.innerHTML = '';
   if(!filtered || !filtered.length){ list.innerHTML = '<div class="small">No se encontraron resultados</div>'; return; }
-  filtered.forEach(item => {
+
+  // sort alphabetically
+  const sorted = sortByFiscalia(filtered);
+
+  sorted.forEach(item => {
     const div = document.createElement('div'); div.className = 'item';
-    const phoneDisplay = item.telefono_clean ? ' • '+formatDisplayPhone(item.telefono_clean) : '';
+    const phoneDisplay = item.telefono_clean ? '<strong>Teléfono:</strong> '+formatDisplayPhone(item.telefono_clean) : '<strong>Teléfono:</strong> —';
+    const comunaDisplay = item.comuna ? '<strong>Comuna:</strong> '+escapeHtml(item.comuna) : '<strong>Comuna:</strong> —';
     const emailHtml = item.email ? ' • <a href="mailto:'+escapeHtml(item.email)+'">'+escapeHtml(item.email)+'</a>' : '';
     div.innerHTML = '<h3>'+escapeHtml(item.fiscalia)+'</h3><p><strong>Fiscal:</strong> '+escapeHtml(item.fiscal || '')+'</p>'+
-                    '<p><strong>Comuna:</strong> '+escapeHtml(item.comuna || '')+phoneDisplay+emailHtml+'</p>';
+                    '<p>'+comunaDisplay+' • '+phoneDisplay+emailHtml+'</p>';
     div.addEventListener('click', ()=>{ if(item.lat != null && item.lng != null) map.setView([item.lat, item.lng], 14); });
     list.appendChild(div);
   });
 }
 
-function renderMarkers(filtered){
-  clearMarkers();
-  (filtered || []).forEach(item => {
-    if(item && item.lat != null && item.lng != null){
-      try{
-        const m = L.marker([item.lat, item.lng]).addTo(map);
-        m.bindPopup(createPopupHtml(item));
-        markers.push(m);
-      }catch(e){ console.warn('marker creation failed', e, item); }
-    }
-  });
-}
+function renderMarkers(filtered){ clearMarkers(); (filtered || []).forEach(item=>{ if(item && item.lat != null && item.lng != null){ try{ const m = L.marker([item.lat, item.lng]).addTo(map); m.bindPopup(createPopupHtml(item)); markers.push(m); }catch(e){ console.warn('marker creation failed', e, item); } } }); }
 
 function populateComunas(){
   const set = new Set((data || []).map(d => d.comuna).filter(Boolean));
   const sel = document.getElementById('comunaFilter');
-  sel.querySelectorAll('option:not(:first-child)').forEach(o => o.remove());
-  Array.from(set).sort().forEach(c => { const opt = document.createElement('option'); opt.value = c; opt.textContent = c; sel.appendChild(opt); });
+  // clear existing options (except first)
+  sel.querySelectorAll('option:not(:first-child)').forEach(o=>o.remove());
+  Array.from(set).sort().forEach(c=>{ const opt = document.createElement('option'); opt.value = c; opt.textContent = c; sel.appendChild(opt); });
 }
 
 function applyFilters(){
@@ -140,17 +137,16 @@ function applyFilters(){
       try{ map.invalidateSize(); }catch(e){}
       const coords = (filtered || []).filter(f => f && f.lat != null && f.lng != null).map(f => [f.lat, f.lng]);
       if(coords.length){
-        try{ map.fitBounds(coords, { maxZoom: 14 }); }
-        catch(e){ console.warn('fitBounds failed', e); map.setView([-33.45, -70.667], 10); }
-      } else { map.setView([-33.45, -70.667], 10); }
+        try{ map.fitBounds(coords, { maxZoom: 14 }); } catch(e){ console.warn('fitBounds failed', e); map.setView([-33.45, -70.667], 10); }
+      } else map.setView([-33.45, -70.667], 10);
     }, 80);
   } else {
     renderMarkers(filtered);
     const coords = (filtered || []).filter(f => f && f.lat != null && f.lng != null).map(f => [f.lat, f.lng]);
     if(coords.length){ try{ map.fitBounds(coords, { maxZoom: 14 }); } catch(e){ console.warn('fitBounds failed', e); map.setView([-33.45, -70.667], 10); } }
-    else { map.setView([-33.45, -70.667], 10); }
+    else map.setView([-33.45, -70.667], 10);
   }
-
+  // keep markers in sync
   renderMarkers(filtered);
 }
 
@@ -161,14 +157,36 @@ function init(){
   renderList(data);
   renderMarkers(data);
 
+  // Controls
   document.getElementById('search').addEventListener('input', applyFilters);
   document.getElementById('comunaFilter').addEventListener('change', applyFilters);
-  document.getElementById('downloadJson').addEventListener('click', ()=>{ const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'fiscalias_rm.json'; a.click(); URL.revokeObjectURL(url); });
 
-  document.getElementById('tabList').addEventListener('click', ()=>{ document.getElementById('tabList').classList.add('active'); document.getElementById('tabMap').classList.remove('active'); applyFilters(); });
-  document.getElementById('tabMap').addEventListener('click', ()=>{ document.getElementById('tabMap').classList.add('active'); document.getElementById('tabList').classList.remove('active'); applyFilters(); });
+  // Tabs behavior: show/hide leftPane
+  const leftPane = document.getElementById('leftPane');
+  const tabList = document.getElementById('tabList');
+  const tabMap = document.getElementById('tabMap');
 
-  // Copy-phone handler when popup opens
+  function showListMode(){
+    tabList.classList.add('active'); tabMap.classList.remove('active');
+    leftPane.classList.remove('collapsed'); // show list
+    // map visible always on right; ensure map resizes
+    setTimeout(()=>{ try{ map.invalidateSize(); }catch(e){} }, 120);
+    applyFilters();
+  }
+  function showMapMode(){
+    tabMap.classList.add('active'); tabList.classList.remove('active');
+    leftPane.classList.add('collapsed'); // hide list
+    // ensure map resizes to full width area
+    setTimeout(()=>{ try{ map.invalidateSize(); }catch(e){} applyFilters(); }, 120);
+  }
+
+  tabList.addEventListener('click', showListMode);
+  tabMap.addEventListener('click', showMapMode);
+
+  // default: list mode (leftPane visible)
+  showListMode();
+
+  // popup copy handler
   map.on('popupopen', function(e){
     try{
       const node = e.popup.getElement ? e.popup.getElement() : e.popup._contentNode;
@@ -182,7 +200,6 @@ function init(){
             if(navigator.clipboard && navigator.clipboard.writeText){
               navigator.clipboard.writeText(phone).then(()=>{ alert('Teléfono copiado: '+phone); }).catch(()=>{ alert('No se pudo copiar'); });
             } else {
-              // fallback
               const ta = document.createElement('textarea'); ta.value = phone; document.body.appendChild(ta); ta.select();
               try{ document.execCommand('copy'); alert('Teléfono copiado: '+phone); }catch(e){ alert('No se pudo copiar'); }
               document.body.removeChild(ta);
@@ -193,7 +210,7 @@ function init(){
     }catch(err){ console.warn('popupopen handler error', err); }
   });
 
-  // initial view
+  // initial map view
   const initialCoords = (data || []).filter(f => f && f.lat != null && f.lng != null).map(f => [f.lat, f.lng]);
   if(initialCoords.length){ try{ map.fitBounds(initialCoords, { maxZoom: 12 }); }catch(e){ map.setView([-33.45, -70.667], 10); } }
   else map.setView([-33.45, -70.667], 10);
