@@ -5,14 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Fiscales RM — Listado y Mapa</title>
 
-  <!-- Manifest (ruta relativa) -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#006b3f" />
 
-  <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-
-  <!-- App styles -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -27,21 +23,22 @@
 
     <div class="controls">
       <div class="tabs" role="tablist" aria-label="Modo de búsqueda">
-        <div id="tabList" class="tab active" role="tab">Buscar en listado</div>
-        <div id="tabMap" class="tab" role="tab">Buscar en mapa</div>
+        <button id="tabList" class="tab active" type="button">Buscar en listado</button>
+        <button id="tabMap" class="tab" type="button">Buscar en mapa</button>
       </div>
 
       <input id="search" placeholder="Buscar por fiscal, fiscalía o comuna" style="flex:1">
       <select id="comunaFilter"><option value="">Todas las comunas</option></select>
-      <button id="downloadJson" class="primary">Descargar JSON</button>
     </div>
 
     <div class="layout">
+      <!-- left pane: listado -->
       <aside class="card" id="leftPane">
         <div id="list">Cargando...</div>
       </aside>
 
-      <section class="card">
+      <!-- right pane: mapa -->
+      <section class="card" id="mapPane">
         <div id="map"></div>
       </section>
     </div>
@@ -49,10 +46,7 @@
     <footer>Datos base cargados desde documento proporcionado. Puedes pedir cambios adicionales.</footer>
   </div>
 
-  <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-
-  <!-- App logic -->
   <script src="app.js"></script>
 </body>
 </html>
