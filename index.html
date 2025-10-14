@@ -17,7 +17,7 @@
       <div class="brand">RM</div>
       <div>
         <h1>Fiscales — Región Metropolitana</h1>
-        <div class="small">.</div>   <!-- Listado por comuna y mapa (oculto). Usa el botón \"Buscar en mapa\" para abrir el mapa) -->
+        <div class="small">Listado con información de contacto y mapa interactivo.</div>
       </div>
     </header>
 
@@ -27,23 +27,23 @@
         <button id="tabMap" class="tab" type="button">Buscar en mapa</button>
       </div>
 
-      <input id="search" placeholder="Buscar por fiscal, fiscalía o comuna" style="flex:1">
-      <select id="comunaFilter"><option value="">Todas las comunas</option></select>
+      <input id="search" placeholder="Buscar por fiscal o fiscalía" style="flex:1">
+      <select id="fiscaliaFilter"><option value="">Todas las fiscalías</option></select>
     </div>
 
     <div class="layout">
-      <!-- left pane: listado (visible por defecto) -->
+      <!-- Listado (visible por defecto) -->
       <aside class="card" id="leftPane">
         <div id="list">Cargando...</div>
       </aside>
 
-      <!-- right pane: mapa (oculto por defecto) -->
+      <!-- Mapa (oculto por defecto) -->
       <section class="card collapsed" id="mapPane">
         <div id="map"></div>
       </section>
     </div>
 
-    <footer>Desarrollado por el 209 2° JEJV, para cooperar a los colegas que necesiten dicha info</footer>
+    <footer>Aplicación de contacto de fiscales de la Región Metropolitana — versión demo.</footer>
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
