@@ -1,4 +1,4 @@
-// app.js — list-first behavior, per-user requirements
+// app.js — filtro por 'fiscalia' (Todas las fiscalías), sin la palabra 'Comuna' visible.
 
 const sampleData = [
   { "fiscal": "NELSON CAJAS", "fiscalia": "MELIPILLA", "telefono": "+56 9 9456 1658", "email": "NCAJAS@MINPUBLICO.CL", "lat": -33.69125249814863, "lng": -71.21412774386494 },
@@ -28,7 +28,7 @@ let data = [];
     data = sampleData;
   }
 
-  // normalize phone fields
+  // normalize phones and add helpers
   data = (data || []).map(rec => {
     const raw = rec.telefono || '';
     const digits = String(raw).replace(/[^0-9]/g,'');
@@ -44,15 +44,14 @@ let data = [];
   else init();
 })();
 
-// map
 let map, markers = [];
+
 function initMap(){
   map = L.map('map').setView([-33.45, -70.667], 10);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OSM' }).addTo(map);
 }
 function clearMarkers(){ markers.forEach(m=>{ try{ map.removeLayer(m); }catch(e){} }); markers = []; }
 
-// helpers
 function escapeHtml(s){ if(!s) return ''; return String(s).replace(/[&"'<>]/g, c => ({'&':'&amp;','"':'&quot;',"'":'&#39;','<':'&lt;','>':'&gt;'}[c])); }
 function formatDisplayPhone(clean){
   if(!clean) return '';
@@ -68,30 +67,22 @@ function formatDisplayPhone(clean){
 }
 function sortByFiscalia(arr){ return (arr || []).slice().sort((a,b)=>{ const A=(a.fiscalia||'').toLowerCase(); const B=(b.fiscalia||'').toLowerCase(); return A < B ? -1 : (A > B ? 1 : 0); }); }
 
-// render list with actions (all entries included; duplicates shown)
 function createListItem(item){
   const li = document.createElement('div'); li.className = 'item';
   const title = '<h3>'+escapeHtml(item.fiscalia)+'</h3>';
   const fiscal = '<p><strong>Fiscal:</strong> '+escapeHtml(item.fiscal || '')+'</p>';
-  const comuna = '<strong>Comuna:</strong> '+escapeHtml(item.comuna || '—');
   const telefonoText = item.telefono_clean ? '<strong>Teléfono:</strong> '+formatDisplayPhone(item.telefono_clean) : '<strong>Teléfono:</strong> —';
   const emailHtml = item.email ? ' • <a href="mailto:'+escapeHtml(item.email)+'">'+escapeHtml(item.email)+'</a>' : '';
-  // actions
   const wa = item.telefono_wa ? '<a class="wa" href="https://wa.me/'+item.telefono_wa+'?text='+encodeURIComponent('Hola '+(item.fiscal||''))+'" target="_blank">WhatsApp</a>' : '';
   const mail = item.email ? '<a href="mailto:'+escapeHtml(item.email)+'">Correo</a>' : '';
   const maps = (item.lat!=null && item.lng!=null) ? '<a href="https://www.google.com/maps/search/?api=1&query='+item.lat+','+item.lng+'" target="_blank">Google Maps</a>' : '';
   const copy = item.telefono_clean ? '<a class="copy-phone" href="#" data-phone="'+item.telefono_clean+'">Copiar teléfono</a>' : '';
   const actions = '<div class="list-actions">'+[wa, mail, maps, copy].filter(Boolean).join(' ')+'</div>';
 
-  li.innerHTML = title + fiscal + '<p>'+comuna+' • '+telefonoText+emailHtml+'</p>' + actions;
-  // clicking the item centers map if coords exist
+  li.innerHTML = title + fiscal + '<p>'+telefonoText+emailHtml+'</p>' + actions;
   li.addEventListener('click', (ev)=>{
-    // avoid triggering when clicking action links
     if(ev.target && (ev.target.tagName === 'A' || ev.target.closest('a'))) return;
     if(item.lat != null && item.lng != null){
-      // ensure map visible briefly then set view
-      // if map is hidden, show map, center, then hide again after (or keep hidden per UX)
-      // We'll center map but not toggle visibility here
       try{ map.setView([item.lat, item.lng], 14); }catch(e){ console.warn('map.setView failed', e); }
     }
   });
@@ -102,19 +93,15 @@ function renderList(filtered){
   const list = document.getElementById('list'); list.innerHTML = '';
   if(!filtered || !filtered.length){ list.innerHTML = '<div class="small">No se encontraron resultados</div>'; return; }
   const sorted = sortByFiscalia(filtered);
-  sorted.forEach(item => {
-    const el = createListItem(item);
-    list.appendChild(el);
-  });
+  sorted.forEach(item => { list.appendChild(createListItem(item)); });
 }
 
 function renderMarkers(filtered){
   clearMarkers();
   (filtered || []).forEach(item=>{
-    if(item && item.lat != null && item.lng != null){
+    if(item && item.lat!=null && item.lng!=null){
       try{
         const m = L.marker([item.lat, item.lng]).addTo(map);
-        // reuse popup html from list actions (but simpler)
         const wa = item.telefono_wa ? '<a class="wa" href="https://wa.me/'+item.telefono_wa+'?text='+encodeURIComponent('Hola '+(item.fiscal||''))+'" target="_blank">WhatsApp</a>' : '';
         const mail = item.email ? '<a href="mailto:'+escapeHtml(item.email)+'">Correo</a>' : '';
         const maps = '<a href="https://www.google.com/maps/search/?api=1&query='+item.lat+','+item.lng+'" target="_blank">Google Maps</a>';
@@ -127,44 +114,39 @@ function renderMarkers(filtered){
   });
 }
 
-function populateComunas(){
-  const set = new Set((data || []).map(d => d.comuna).filter(Boolean));
-  const sel = document.getElementById('comunaFilter');
+function populateFiscalias(){
+  const set = new Set((data || []).map(d => d.fiscalia).filter(Boolean));
+  const sel = document.getElementById('fiscaliaFilter');
   sel.querySelectorAll('option:not(:first-child)').forEach(o=>o.remove());
-  Array.from(set).sort().forEach(c=>{ const opt = document.createElement('option'); opt.value = c; opt.textContent = c; sel.appendChild(opt); });
+  Array.from(set).sort().forEach(f=>{ const opt = document.createElement('option'); opt.value = f; opt.textContent = f; sel.appendChild(opt); });
 }
 
 function applyFilters(){
   const q = (document.getElementById('search').value || '').toLowerCase().trim();
-  const comuna = document.getElementById('comunaFilter').value;
+  const fiscalia = document.getElementById('fiscaliaFilter').value;
   const filtered = (data || []).filter(d=>{
-    const matchQ = !q || ((d.fiscalia||'').toLowerCase().includes(q) || (d.fiscal||'').toLowerCase().includes(q) || (d.comuna||'').toLowerCase().includes(q));
-    const matchComuna = !comuna || d.comuna === comuna;
-    return matchQ && matchComuna;
+    const matchQ = !q || ((d.fiscalia||'').toLowerCase().includes(q) || (d.fiscal||'').toLowerCase().includes(q));
+    const matchFiscalia = !fiscalia || d.fiscalia === fiscalia;
+    return matchQ && matchFiscalia;
   });
 
   const isListMode = document.getElementById('tabList').classList.contains('active');
   if(isListMode){
     renderList(filtered);
-    // keep markers updated but do not show map (mapPane may be hidden)
-    renderMarkers(filtered);
+    renderMarkers(filtered); // keep markers in sync (map hidden)
   } else {
-    // show map mode -> render markers and fit bounds
     renderMarkers(filtered);
     const coords = (filtered || []).filter(f=>f && f.lat!=null && f.lng!=null).map(f=>[f.lat,f.lng]);
-    if(coords.length){
-      try{ map.fitBounds(coords, { maxZoom: 14 }); } catch(e){ console.warn('fitBounds failed', e); map.setView([-33.45,-70.667], 10); }
-    } else map.setView([-33.45,-70.667], 10);
+    if(coords.length){ try{ map.fitBounds(coords, { maxZoom: 14 }); } catch(e){ console.warn('fitBounds failed', e); map.setView([-33.45,-70.667], 10); } }
+    else map.setView([-33.45,-70.667], 10);
   }
 }
 
-// UI toggles: show/hide panes
 function showListMode(){
   document.getElementById('tabList').classList.add('active');
   document.getElementById('tabMap').classList.remove('active');
   document.getElementById('leftPane').classList.remove('collapsed');
   document.getElementById('mapPane').classList.add('collapsed');
-  // refresh list & ensure markers are prepared (but map hidden)
   applyFilters();
 }
 function showMapMode(){
@@ -176,25 +158,19 @@ function showMapMode(){
 }
 
 function init(){
-  // map init but keep mapPane hidden initially
   initMap();
-
   if(!data || !data.length) data = sampleData;
-  populateComunas();
+  populateFiscalias();
   renderList(data);
   renderMarkers(data);
 
-  // events
   document.getElementById('search').addEventListener('input', applyFilters);
-  document.getElementById('comunaFilter').addEventListener('change', applyFilters);
-
+  document.getElementById('fiscaliaFilter').addEventListener('change', applyFilters);
   document.getElementById('tabList').addEventListener('click', showListMode);
   document.getElementById('tabMap').addEventListener('click', showMapMode);
 
-  // default: show list only
   showListMode();
 
-  // copy handler for 'copy-phone' links both in list and popups
   document.addEventListener('click', function(e){
     const el = e.target.closest && e.target.closest('.copy-phone');
     if(!el) return;
@@ -204,16 +180,13 @@ function init(){
     if(navigator.clipboard && navigator.clipboard.writeText){
       navigator.clipboard.writeText(phone).then(()=>{ alert('Teléfono copiado: '+phone); }).catch(()=>{ alert('No se pudo copiar'); });
     } else {
-      // fallback
       const ta = document.createElement('textarea'); ta.value = phone; document.body.appendChild(ta); ta.select();
       try{ document.execCommand('copy'); alert('Teléfono copiado: '+phone); }catch(e){ alert('No se pudo copiar'); }
       document.body.removeChild(ta);
     }
   });
 
-  // initial map view bounds (if any coords)
-  const initialCoords = (data || []).filter(f=> f && f.lat != null && f.lng != null).map(f=>[f.lat,f.lng]);
-  if(initialCoords.length){
-    try{ map.fitBounds(initialCoords, { maxZoom: 12 }); }catch(e){ map.setView([-33.45, -70.667], 10); }
-  } else map.setView([-33.45, -70.667], 10);
+  const initialCoords = (data || []).filter(f=> f && f.lat!=null && f.lng!=null).map(f=>[f.lat,f.lng]);
+  if(initialCoords.length){ try{ map.fitBounds(initialCoords, { maxZoom: 12 }); }catch(e){ map.setView([-33.45, -70.667], 10); } }
+  else map.setView([-33.45, -70.667], 10);
 }
