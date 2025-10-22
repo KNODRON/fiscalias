@@ -5,11 +5,14 @@
   { "fiscal": "FRANCISCO LEDEZMA CREDA", "fiscalia": "CENTRO NORTE", "telefono": "", "email": "fledezma@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
   { "fiscal": "MARCO NUÑEZ", "fiscalia": "SUR", "telefono": "+56990473601", "email": "", "lat": -33.50158481526036, "lng": -70.65413225431585 },
   { "fiscal": "MARIA JOSE PAREDES", "fiscalia": "SUR", "telefono": "+56944985690", "email": "", "lat": -33.50158481526036, "lng": -70.65413225431585 },
-  { "fiscal": "ERNESTO GONZALEZ DURAN", "fiscalia": "SACFI, CENTRO NORTE", "telefono": "+56959659499", "email": "", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "ERNESTO GONZALEZ DURAN", "fiscalia": "CENTRO NORTE (sacfi)", "telefono": "+56959659499", "email": "", "lat": -33.47335075577229, "lng": -70.65679515038968 },
   { "fiscal": "MANUEL ZUÑIGA RODRIGUEZ", "fiscalia": "CENTRO NORTE", "telefono": "+56991599354", "email": "", "lat": -33.47335075577229, "lng": -70.65679515038968 },
   { "fiscal": "ARTURO RODRIGUEZ", "fiscalia": "TALAGANTE", "telefono": "+56994839723", "email": "", "lat": -33.669774037815756, "lng": -70.93925979416282 },
   { "fiscal": "OSCAR BERMUDEZ", "fiscalia": "CENTRO NORTE", "telefono": "+56996192125", "email": "", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "MARIA ALEJANDRA BRAVO FIGUEROA", "fiscalia": "CENTRO NORTE", "telefono": "+56995550831", "email": "", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "PAOLA TRISOTTE DIAZ", "fiscalia": "CENTRO NORTE", "telefono": "+56944525486", "email": "", "lat": -33.47335075577229, "lng": -70.65679515038968 }, 
   { "fiscal": "PATRICIO ROSAS", "fiscalia": "OCCIDENTE", "telefono": "+56992177962", "email": "", "lat": -33.44586120921946, "lng": -70.74101625497043 },
   { "fiscal": "JAVIERA INOSTROZA D", "fiscalia": "SAN BERNARDO", "telefono": "+56229656135", "email": "JINOSTROZAD@MINPUBLICO.CL", "lat": -33.59544104254351, "lng": -70.71009133344263 },
   { "fiscal": "LUIS MORALES PALACIOS", "fiscalia": "PUENTE ALTO", "telefono": "", "email": "luiseliasmorales123@gmail.com", "lat": -33.60754176198951, "lng": -70.5723812463227 }
+  { "fiscal": "FRANCISCO LANAS MADRID", "fiscalia": "ORIENTE", "telefono": "+56995391154", "email": "", "lat": -33.60754176198951, "lng": -70.5723812463227 }
 ]
