@@ -10,6 +10,16 @@
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Estilo mínimo para la nota colaborativa -->
+  <style>
+    .contrib-note{
+      margin-top:10px;background:#f0f7f4;border:1px solid #cfe8d9;border-left:4px solid #006b3f;
+      padding:10px;border-radius:8px;font-size:13px;color:#064
+    }
+    .contrib-note .title{font-weight:600;display:flex;align-items:center;gap:8px;margin-bottom:6px}
+    .contrib-note svg{width:18px;height:18px;flex:0 0 18px}
+  </style>
 </head>
 <body>
   <div class="wrap">
@@ -35,6 +45,24 @@
       <!-- Listado (visible por defecto) -->
       <aside class="card" id="leftPane">
         <div id="list">Cargando...</div>
+
+        <!-- Nota colaborativa (siempre visible, fuera del scroll del listado) -->
+        <div class="contrib-note" aria-live="polite">
+          <div class="title">
+            <!-- ícono simple -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#006b3f" aria-hidden="true">
+              <path d="M11 9h2v8h-2zM11 7h2v2h-2z"/><path d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10
+               10-4.49 10-10S17.51 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8
+               8-8 8 3.59 8 8-3.59 8-8 8z"/>
+            </svg>
+            Información colaborativa
+          </div>
+          <div class="small">
+            La app “Fiscales RM” permite consultar rápidamente los fiscales y contactarlos por WhatsApp, correo o mapa.
+            <br>
+            📩 Si tienes <strong>nuevos datos o actualizaciones</strong>, por favor compártelos para mantener la base al día.
+          </div>
+        </div>
       </aside>
 
       <!-- Mapa (oculto por defecto) -->
@@ -43,7 +71,7 @@
       </section>
     </div>
 
-    <footer>Aplicación de contacto de fiscales de la Región Metropolitana — versión demo.</footer>
+    <footer>Contactos de fiscales de la Región Metropolitana — para los Cazadores.</footer>
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
