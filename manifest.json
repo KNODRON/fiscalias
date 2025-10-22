@@ -1,13 +1,26 @@
 {
   "name": "Fiscales RM",
   "short_name": "FiscalesRM",
+  "description": "Aplicación de contacto de fiscales de la Región Metropolitana de Chile. Permite buscar por fiscalía, ver mapa y contactar por WhatsApp o correo.",
   "lang": "es",
-  "start_url": "./",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#006b3f",
   "icons": [
-    {"src":"icons/icon-192.png","sizes":"192x192","type":"image/png"},
-    {"src":"icons/icon-512.png","sizes":"512x512","type":"image/png"}
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ]
 }
