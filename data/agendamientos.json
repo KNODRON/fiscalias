@@ -1,0 +1,31 @@
+[
+  {
+    "fiscalia": "Centro Norte",
+    "contactos": [
+      {"nombre": "Natalia Bocaz", "email": "nbocaz@minpublico.cl"},
+      {"nombre": "Daniel Gamboa", "email": "dgamboa@minpublico.cl"}
+    ]
+  },
+  {
+    "fiscalia": "Maipú",
+    "contactos": [
+      {"nombre": "Rodrigo González", "email": "rgonzalez@minpublico.cl"},
+      {"nombre": "Carla Saavedra", "email": "csaavedraz@minpublico.cl"},
+      {"nombre": "Esteban Santander", "email": "esantander@minpublico.cl"}
+    ]
+  },
+  {
+    "fiscalia": "La Florida / Peñalolén / Macul",
+    "contactos": [
+      {"nombre": "Carolina Zapata", "email": "czapata@minpublico.cl"},
+      {"nombre": "Felipe Chacón", "email": "fchacon@minpublico.cl"},
+      {"nombre": "Eduardo Cañamo", "email": "ecanamo@minpublico.cl"}
+    ]
+  },
+  {
+    "fiscalia": "San Bernardo",
+    "contactos": [
+      {"nombre": "Eduardo Turra", "email": "eturra@minpublico.cl"}
+    ]
+  }
+]
