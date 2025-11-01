@@ -32,20 +32,20 @@
     "fiscalia": "Regional Occidente / Alta Complejidad Occidente / Focos Invest. Occidentes / Pudahuel",
     "contactos": [
       {"nombre": "-", "email": "cgallegos@minpublico.cl / no recibe dinero"}, 
-      {"nombre": "-", "email": "fsalomo@minpublico.cl / recibe solo dinero"},
+      {"nombre": "-", "email": "fsalomo@minpublico.cl / recibe solo dinero"}
     ]
   },
   {
     "fiscalia": "Ñuñoa / Providencia",
     "contactos": [
       {"nombre": "-", "email": "fsalinasg@minpublico.cl"}, 
-      {"nombre": "-", "email": "drojom@minpublico.cl"},
+      {"nombre": "-", "email": "drojom@minpublico.cl"}
     ]
   },
   {
     "fiscalia": "Las Condes",
     "contactos": [
-      {"nombre": "-", "email": "eariverar@minpublico.cl"}, 
+      {"nombre": "-", "email": "eariverar@minpublico.cl"}
     ]
   },
   {
@@ -53,13 +53,13 @@
     "contactos": [
       {"nombre": "-", "email": "nbooth@minpublico.cl"},
       {"nombre": "-", "email": "castete@minpublico.cl"},
-      {"nombre": "-", "email": "ealtamirano@minpublico.cl"},
+      {"nombre": "-", "email": "ealtamirano@minpublico.cl"}
     ]
   },
   {
     "fiscalia": "FAC Oriente",
     "contactos": [
-      {"nombre": "-", "email": "drivasg@minpublico.cl"}, 
+      {"nombre": "-", "email": "drivasg@minpublico.cl"}
     ]
   },
   {
@@ -67,13 +67,13 @@
     "contactos": [
       {"nombre": "-", "email": "crvalenzuela@minpublico.cl"},
       {"nombre": "-", "email": "rparrar@minpublico.cl"},
-      {"nombre": "-", "email": "cpradenas@minpublico.cl"},
+      {"nombre": "-", "email": "cpradenas@minpublico.cl"}
     ]
   },
   {
     "fiscalia": "Melipilla",
     "contactos": [
-      {"nombre": "-", "email": "fbustamante@minpublico.cl"},
+      {"nombre": "-", "email": "fbustamante@minpublico.cl"}
     ]
   }
 ]
