@@ -151,11 +151,50 @@ function renderMarkers(arr) {
   arr.forEach((i) => {
     if (!i.lat || !i.lng) return;
     const m = L.marker([i.lat, i.lng]).addTo(map);
-    const html = `<strong>${i.fiscalia}</strong><br>${i.fiscal || "—"}<br>${
-      i.email ? `<a href="mailto:${i.email}">${i.email}</a><br>` : ""
-    }`;
+
+    const wa = i.telefono
+      ? `<a class="wa" href="https://wa.me/${i.telefono.replace(
+          /[^0-9]/g,
+          ""
+        )}" target="_blank">WhatsApp</a>`
+      : "";
+    const mail = i.email
+      ? `<a href="mailto:${i.email}">Correo</a>`
+      : "";
+    const maps = `<a href="https://www.google.com/maps/search/?api=1&query=${i.lat},${i.lng}" target="_blank">Google Maps</a>`;
+    const copy = i.telefono
+      ? `<a href="#" class="copy-phone" data-phone="${i.telefono.replace(
+          /[^0-9]/g,
+          ""
+        )}">Copiar teléfono</a>`
+      : "";
+
+    const actions = [wa, mail, maps, copy].filter(Boolean).join(" ");
+
+    const html = `
+      <div style="min-width:200px">
+        <strong>${i.fiscalia}</strong><br>
+        ${i.fiscal || "—"}<br>
+        ${i.telefono ? "📞 " + i.telefono + "<br>" : ""}
+        ${i.email ? "✉️ <a href='mailto:" + i.email + "'>" + i.email + "</a><br>" : ""}
+        <div class="popup-actions" style="margin-top:6px;">${actions}</div>
+      </div>
+    `;
+
     m.bindPopup(html);
     markers.push(m);
+  });
+
+  // Activar copia desde popup
+  document.addEventListener("click", function (e) {
+    const el = e.target.closest && e.target.closest(".copy-phone");
+    if (!el) return;
+    e.preventDefault();
+    const phone = el.getAttribute("data-phone");
+    if (!phone) return;
+    navigator.clipboard.writeText(phone).then(() => {
+      alert("Teléfono copiado: " + phone);
+    });
   });
 }
 
