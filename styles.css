@@ -26,3 +26,36 @@ footer{font-size:12px;color:#425b57;text-align:center;margin-top:12px}
 @media (max-width:820px){.layout{grid-template-columns:1fr;}.brand{display:none}.controls{flex-direction:column}}
 /* helpers */
 .collapsed { display: none !important; }
+/* ===== Estilos para Agendamientos ===== */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+.chip {
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  padding: 6px 10px;
+  font-size: 13px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s;
+}
+.chip:hover {
+  background: #004e2c;
+}
+.agend-item {
+  border-bottom: 1px solid #cfe8d9;
+  padding: 10px 0;
+}
+.agend-item h3 {
+  color: var(--green);
+  margin: 0 0 4px 0;
+  font-size: 16px;
+}
+.agend-list {
+  padding: 8px;
+}
