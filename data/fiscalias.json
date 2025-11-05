@@ -20,11 +20,11 @@
   { "fiscal": "CARLOS ELTIT ORTEGA", "fiscalia": "ECOH", "telefono": "", "email": "celtit@minpublico.cl", "lat": -33.43776665985046, "lng": -70.65717873628284 },
   { "fiscal": "GAMAL MASSU HADDAD", "fiscalia": "ECOH", "telefono": "", "email": "gmassu@minpublico.cl", "lat": -33.43776665985046, "lng": -70.65717873628284 },
   { "fiscal": "JORGE MUÑOZ CABRERA", "fiscalia": "CENTRO NORTE", "telefono": "+56939415952", "email": "", "lat": -33.47335075577229, "lng": -70.65679515038968 },
-  { "fiscal": "CARMEN GLORIA DE LA TORRE QUEZADA", "fiscalia": "", "telefono": "+56995577714", "email": "", "lat": -33.457423659160334, "lng": -70.65800264940633 },
-  { "fiscal": "PAULINA DIAZ OBILINOVC", "fiscalia": "", "telefono": "+56957598580", "email": "", "lat": -33.457423659160334, "lng": -70.65800264940633 },
-  { "fiscal": "LORENA HERRERA", "fiscalia": "", "telefono": "+56974897905", "email": "", "lat": -33.457423659160334, "lng": -70.65800264940633 },
-  { "fiscal": "MARCELA ADASME", "fiscalia": "", "telefono": "+56995552422", "email": "", "lat": -33.457423659160334, "lng": -70.65800264940633 },
-  { "fiscal": "PAULINA CABRERA", "fiscalia": "", "telefono": "+56988069820", "email": "", "lat": -33.457423659160334, "lng": -70.65800264940633 },
-  { "fiscal": "PAULA FLORES VARGAS", "fiscalia": "", "telefono": "+56974615186", "email": "", "lat": -33.457423659160334, "lng": -70.65800264940633 },
+  { "fiscal": "CARMEN GLORIA DE LA TORRE QUEZADA", "fiscalia": "", "telefono": "+56995577714", "email": "", "lat": -33.474701938950844, "lng": -70.65665036777209 },
+  { "fiscal": "PAULINA DIAZ OBILINOVC", "fiscalia": "", "telefono": "+56957598580", "email": "", "lat": -33.474701938950844, "lng": -70.65665036777209 },
+  { "fiscal": "LORENA HERRERA", "fiscalia": "", "telefono": "+56974897905", "email": "", "lat": -33.474701938950844, "lng": -70.65665036777209 },
+  { "fiscal": "MARCELA ADASME", "fiscalia": "", "telefono": "+56995552422", "email": "", "lat": -33.474701938950844, "lng": -70.65665036777209 },
+  { "fiscal": "PAULINA CABRERA", "fiscalia": "", "telefono": "+56988069820", "email": "", "lat": -33.474701938950844, "lng": -70.65665036777209 },
+  { "fiscal": "PAULA FLORES VARGAS", "fiscalia": "", "telefono": "+56974615186", "email": "", "lat": -33.474701938950844, "lng": -70.65665036777209 },
   { "fiscal": "FRANCISCO LANAS MADRID", "fiscalia": "ORIENTE", "telefono": "+56995391154", "email": "flanas@minpublico.cl", "lat": -33.406463974819495, "lng": -70.57347781825628 } 
 ]
