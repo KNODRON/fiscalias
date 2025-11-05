@@ -22,7 +22,7 @@
   { "fiscal": "JORGE MUÑOZ CABRERA", "fiscalia": "CENTRO NORTE", "telefono": "+56939415952", "email": "", "lat": -33.47335075577229, "lng": -70.65679515038968 },
   { "fiscal": "CARMEN GLORIA DE LA TORRE QUEZADA", "fiscalia": "", "telefono": "+56995577714", "email": "", "lat": -33.0, "lng": -70.0 },
   { "fiscal": "PAULINA DIAZ OBILINOVC", "fiscalia": "", "telefono": "+56957598580", "email": "", "lat": -33.0, "lng": -70.0 },
-  { "fiscal": "LORENA HERRERA", "fiscalia": "", "telefono": "+56974897905", "email": "", "lat": -33.0, "lng": -70.0 },
+  { "fiscal": "LORENA HERRERA", "fiscalia": "", "telefono": "+56974897905", "email": "", "lat": , "lng":  },
   { "fiscal": "MARCELA ADASME", "fiscalia": "", "telefono": "+56995552422", "email": "", "lat": -33.0, "lng": -70.0 },
   { "fiscal": "PAULINA CABRERA", "fiscalia": "", "telefono": "+56988069820", "email": "", "lat": -33.0, "lng": -70.0 },
   { "fiscal": "PAULA FLORES VARGAS", "fiscalia": "", "telefono": "+56974615186", "email": "", "lat": -33.0, "lng": -70.0 },
