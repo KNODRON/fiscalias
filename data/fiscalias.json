@@ -26,5 +26,7 @@
   { "fiscal": "MARCELA ADASME", "fiscalia": "", "telefono": "+56995552422", "email": "", "lat": -33.474701938950844, "lng": -70.65665036777209 },
   { "fiscal": "PAULINA CABRERA", "fiscalia": "", "telefono": "+56988069820", "email": "", "lat": -33.474701938950844, "lng": -70.65665036777209 },
   { "fiscal": "PAULA FLORES VARGAS", "fiscalia": "", "telefono": "+56974615186", "email": "", "lat": -33.474701938950844, "lng": -70.65665036777209 },
+  
+  
   { "fiscal": "FRANCISCO LANAS MADRID", "fiscalia": "ORIENTE", "telefono": "+56995391154", "email": "flanas@minpublico.cl", "lat": -33.406463974819495, "lng": -70.57347781825628 } 
 ]
