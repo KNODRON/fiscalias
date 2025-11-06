@@ -26,7 +26,14 @@
   { "fiscal": "MARCELA ADASME", "fiscalia": "", "telefono": "+56995552422", "email": "", "lat": -33.474701938950844, "lng": -70.65665036777209 },
   { "fiscal": "PAULINA CABRERA", "fiscalia": "", "telefono": "+56988069820", "email": "", "lat": -33.474701938950844, "lng": -70.65665036777209 },
   { "fiscal": "PAULA FLORES VARGAS", "fiscalia": "", "telefono": "+56974615186", "email": "", "lat": -33.474701938950844, "lng": -70.65665036777209 },
-  
+  { "fiscal": "SANCHEZ MONDACA ALEJANDRO JOSE", "fiscalia": "CHACABUCO", "telefono": "+56995552422", "email": "ajsanchez@minpublico.cl", "lat": -33.19782977327036, "lng": -70.67049735856907 },
+  { "fiscal": "ARBILDUA THUMALA JAVIER ANDRES", "fiscalia": "CHACABUCO", "telefono": "+56996358825", "email": "jarbildua@minpublico.cl", "lat": -33.19782977327036, "lng": -70.67049735856907 },
+  { "fiscal": "GONZALEZ FUENTES NANCY LOURDES", "fiscalia": "CHACABUCO", "telefono": "+56994573671", "email": "nlgonzalez@minpublico.cl", "lat": -33.19782977327036, "lng": -70.67049735856907 },
+  { "fiscal": "GONZALEZ DURAN ERNESTO ANDRES", "fiscalia": "CHACABUCO", "telefono": "+56944027155", "email": "egonzalezd@minpublico.cl", "lat": -33.19782977327036, "lng": -70.67049735856907 },
+  { "fiscal": "PASTORIZA DE LA FUENTE ANDRES ALFREDO", "fiscalia": "CHACABUCO", "telefono": "+56965886182", "email": "apastoriza@minpublico.cl", "lat": -33.19782977327036, "lng": -70.67049735856907 },
+  { "fiscal": "RUIZ HERRERA ALEJANDRA TERESA", "fiscalia": "CHACABUCO", "telefono": "+56944027170", "email": "aruiz@minpublico.cl", "lat": -33.19782977327036, "lng": -70.67049735856907 },
+  { "fiscal": "SOTO TOBAR OSVALDO ENRIQUE", "fiscalia": "CHACABUCO", "telefono": "+56942522088", "email": "osoto@minpublico.cl", "lat": -33.19782977327036, "lng": -70.67049735856907 },
+
   
   { "fiscal": "FRANCISCO LANAS MADRID", "fiscalia": "ORIENTE", "telefono": "+56995391154", "email": "flanas@minpublico.cl", "lat": -33.406463974819495, "lng": -70.57347781825628 } 
 ]
