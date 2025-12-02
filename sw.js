@@ -1,59 +1,81 @@
 // sw.js — PWA Fiscales RM (GitHub Pages friendly)
-const CACHE_NAME = 'pwa-fiscales-v4';
+const CACHE_NAME = 'pwa-fiscales-v5';
 const ASSETS = [
   'index.html',
   'styles.css',
   'app.js',
   'manifest.json',
-  // agrega aquí otros assets si los tienes (por ejemplo, icons si quieres precachearlos)
-  // 'icons/icon-192.png',
-  // 'icons/icon-512.png',
+  // agrega otros assets si lo deseas
 ];
 
+// === INSTALACIÓN ===
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(async (cache) => {
-      // evita servir desde caché HTTP del navegador al precachear
-      await Promise.all(ASSETS.map(url => cache.add(new Request(url, { cache: 'reload' }))));
+      await Promise.all(ASSETS.map(url =>
+        cache.add(new Request(url, { cache: 'reload' }))
+      ));
     })
   );
+
+  // Permite que el SW nuevo pase a "waiting"
   self.skipWaiting();
 });
 
+// === ACTIVACIÓN ===
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     (async () => {
-      // borra caches viejos
       const keys = await caches.keys();
-      await Promise.all(keys.map(k => (k !== CACHE_NAME ? caches.delete(k) : Promise.resolve())));
+      await Promise.all(
+        keys.map(k => (k !== CACHE_NAME ? caches.delete(k) : Promise.resolve()))
+      );
       await self.clients.claim();
     })()
   );
 });
 
-// Permite activar el SW nuevo sin tener que cerrar pestañas
+// === COMUNICACIÓN: permitir skip-waiting manual ===
 self.addEventListener('message', (event) => {
-  if (event.data === 'SKIP_WAITING') self.skipWaiting();
+  if (event.data === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });
 
+// === DETECTAR ACTUALIZACIONES ===
+// Cuando este SW pasa a "waiting", significa que hay una versión nueva
+self.addEventListener('install', () => {
+  // Nada más, queda en waiting
+});
+
+// Avisar a los clientes que hay una actualización disponible
+self.addEventListener('activate', () => {
+  notifyClients('update-available');
+});
+
+// Función para enviar mensaje
+function notifyClients(msg) {
+  self.clients.matchAll().then((clients) => {
+    clients.forEach(client => client.postMessage(msg));
+  });
+}
+
+// === FETCH: Mantener tu comportamiento original ===
 self.addEventListener('fetch', (event) => {
   const req = event.request;
 
-  // Sólo GET
   if (req.method !== 'GET') return;
 
-  // 1) Navegación (documentos HTML): network-first con fallback a cache (index.html)
+  // Navegación → network-first
   if (req.mode === 'navigate') {
     event.respondWith(
       (async () => {
         try {
           const fresh = await fetch(req);
-          // opcional: actualiza copia de index.html
           const cache = await caches.open(CACHE_NAME);
           cache.put('index.html', fresh.clone());
           return fresh;
         } catch (e) {
-          // offline → devuelve index.html si está cacheado
           const cache = await caches.open(CACHE_NAME);
           const cached = await cache.match('index.html');
           return cached || Response.error();
@@ -63,20 +85,20 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // 2) Archivos estáticos (css/js/json/png/svg/etc): stale-while-revalidate
+  // Archivos estáticos → stale-while-revalidate
   event.respondWith(
     (async () => {
       const cache = await caches.open(CACHE_NAME);
       const cached = await cache.match(req);
-      const fetchPromise = fetch(req).then((res) => {
-        // guarda sólo respuestas válidas
-        if (res && res.status === 200 && res.type === 'basic') {
-          cache.put(req, res.clone());
-        }
-        return res;
-      }).catch(() => null);
+      const fetchPromise = fetch(req)
+        .then((res) => {
+          if (res && res.status === 200 && res.type === 'basic') {
+            cache.put(req, res.clone());
+          }
+          return res;
+        })
+        .catch(() => null);
 
-      // sirve cache inmediato y luego se revalida en background
       return cached || fetchPromise || new Response('', { status: 504 });
     })()
   );
