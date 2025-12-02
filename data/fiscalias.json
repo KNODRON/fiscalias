@@ -6,7 +6,7 @@
   { "fiscal": "MARCO NUÑEZ", "fiscalia": "SUR", "telefono": "+56990473601", "email": "", "lat": -33.50158481526036, "lng": -70.65413225431585 },
   { "fiscal": "MARIA JOSE PAREDES", "fiscalia": "SUR", "telefono": "+56944985690", "email": "", "lat": -33.50158481526036, "lng": -70.65413225431585 },
   { "fiscal": "ERNESTO GONZALEZ DURAN", "fiscalia": "CENTRO NORTE (sacfi)", "telefono": "+56959659499", "email": "", "lat": -33.47335075577229, "lng": -70.65679515038968 },
-  { "fiscal": "MANUEL ZUÑIGA RODRIGUEZ", "fiscalia": "CENTRO NORTE", "telefono": "+56991599354", "email": "", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "ZUÑIGA RODRIGUEZ MANUEL GABRIEL", "fiscalia": "CENTRO NORTE", "telefono": "+56991599354", "email": "mgzuniga@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
   { "fiscal": "ARTURO RODRIGUEZ", "fiscalia": "TALAGANTE", "telefono": "+56994839723", "email": "", "lat": -33.669774037815756, "lng": -70.93925979416282 },
   { "fiscal": "OSCAR BERMUDEZ", "fiscalia": "CENTRO NORTE", "telefono": "+56996192125", "email": "", "lat": -33.47335075577229, "lng": -70.65679515038968 },
   { "fiscal": "MARIA ALEJANDRA BRAVO FIGUEROA", "fiscalia": "CENTRO NORTE", "telefono": "+56995550831", "email": "", "lat": -33.47335075577229, "lng": -70.65679515038968 },
@@ -73,8 +73,33 @@
   { "fiscal": "ROJAS RUBILAR FRANCISCO JAVIER", "fiscalia": "CENTRO NORTE", "telefono": "+56990471385", "email": "frojas@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
   { "fiscal": "CONTRERAS MATUS PAMELA ANDREA", "fiscalia": "CENTRO NORTE", "telefono": "+56990329401", "email": "pacontreras@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
   { "fiscal": "MOSNICH GONZALEZ NINOSKA FABIOLA", "fiscalia": "CENTRO NORTE", "telefono": "+56994573678", "email": "nmosnich@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "ARMENDARIZ SALAMERO XAVIER", "fiscalia": "CENTRO NORTE", "telefono": "+56996796359", "email": "xarmendariz@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "VALENCIA SOTO EVELYN", "fiscalia": "CENTRO NORTE", "telefono": "+56996310791", "email": "evalencia@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "CHONG CAMPUSANO XIMENA LORETO", "fiscalia": "CENTRO NORTE", "telefono": "+56996556630", "email": "xchong@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "RETAMAL HERRERA JAIME ANTONIO", "fiscalia": "CENTRO NORTE", "telefono": "+56995566280", "email": "jretamal@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "SUAZO SCHWENCKE CAROLINA ISABEL", "fiscalia": "CENTRO NORTE", "telefono": "+56993214154", "email": "csuazo@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "CARRASCO GAETE HECTOR MARCELO", "fiscalia": "CENTRO NORTE", "telefono": "+56995566274", "email": "mcarrasco@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "LEDEZMA CERDA FRANCISCO JAVIER", "fiscalia": "CENTRO NORTE", "telefono": "+56994561296", "email": "fledezma@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "CERDA GONZALEZ PATRICIA ALEJANDRA", "fiscalia": "CENTRO NORTE", "telefono": "+56944973179", "email": "pcerdag@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "SANCHEZ BOUFFANAIS TANIA MARIE", "fiscalia": "CENTRO NORTE", "telefono": "+56944027175", "email": "tsanchez@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "CAÑAS ARANDA MACARENA FRANCISCA", "fiscalia": "CENTRO NORTE", "telefono": "+56995552493", "email": "mcanas@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "RUIZ DELGADO FERNANDO RODRIGO", "fiscalia": "CENTRO NORTE", "telefono": "+56995550841", "email": "fruizd@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "GONZALEZ ARAYA MAURICIO GONZALO", "fiscalia": "CENTRO NORTE", "telefono": "+56995550810", "email": "mggonzalez@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "DONOSO ROSELLO FERNANDO RODRIGO", "fiscalia": "CENTRO NORTE", "telefono": "+56995550810", "email": "fdonosor@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "HUGHES HERRERA SARA XIMENA", "fiscalia": "CENTRO NORTE", "telefono": "+56994573673", "email": "shughes@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "MAYER LACALLE JAVIER ALEJANDRO", "fiscalia": "CENTRO NORTE", "telefono": "+56995550839", "email": "jmayer@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "MENESES DIAZ CRISTIAN ANDRES", "fiscalia": "CENTRO NORTE", "telefono": "+56994573679", "email": "mgzuniga@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "CONTARDO ZUÑIGA LUIS ALBERTO", "fiscalia": "CENTRO NORTE", "telefono": "+56961421503", "email": "lcontardo@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "GARCIA MESINA FERNANDO GUSTAVO", "fiscalia": "CENTRO NORTE", "telefono": "+56995324001", "email": "fggarcia@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "MACHUCA PINOCHET LILIANA FERNANDA", "fiscalia": "CENTRO NORTE", "telefono": "+56993185998", "email": "lmachuca@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "OLIVARI VARGAS FELIPE IVO ALEJANDRO", "fiscalia": "CENTRO NORTE", "telefono": "+56995387473", "email": "folivari@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "ORTIZ DEL FIERRO SERGIO ENRIQUE", "fiscalia": "CENTRO NORTE", "telefono": "+56995552487", "email": "sortiz@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "ORTIZ MORALES SANDRA MARIA", "fiscalia": "CENTRO NORTE", "telefono": "+56957696574", "email": "sortiz@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "QUINTANA MANZO DEBORA ALEJANDRA", "fiscalia": "CENTRO NORTE", "telefono": "+56934542243", "email": "dquintana@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+  { "fiscal": "GONZALEZ RIVEROS FABIOLA", "fiscalia": "CENTRO NORTE", "telefono": "+56993210158", "email": "friveros@minpublico.cl", "lat": -33.47335075577229, "lng": -70.65679515038968 },
+
   
-  { "fiscal": "FRANCISCO LANAS MADRID", "fiscalia": "ORIENTE", "telefono": "+56995391154", "email": "flanas@minpublico.cl", "lat": -33.406463974819495, "lng": -70.57347781825628 } 
+  { "fiscal": "FRANCISCO LANAS MADRID", "fiscalia": "ORIENTE", "telefono": "+56940131240", "email": "flanas@minpublico.cl", "lat": -33.406463974819495, "lng": -70.57347781825628 } 
 ]
 
 
